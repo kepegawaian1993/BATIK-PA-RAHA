@@ -14,7 +14,6 @@
             justify-content: center;
             align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Latar belakang — Biru Soft */
             background: 
                 url('gambar.png') no-repeat center center fixed,
                 linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
@@ -24,14 +23,12 @@
             width: 85%;
             max-width: 520px;
             margin: 20px auto;
-            /* Kotak — Putih bersih dengan nuansa biru sangat tipis agar latar tembus */
             background: linear-gradient(180deg, 
                 rgba(240, 248, 255, 0.88) 0%, 
                 rgba(230, 240, 255, 0.85) 50%, 
                 rgba(240, 248, 255, 0.88) 100%);
             padding: 0;
             border-radius: 24px;
-            /* Bingkai emas mengkilap */
             box-shadow: 
                 0 0 0 3px #D4AF37,
                 0 0 0 6px #F5D76E,
@@ -469,6 +466,14 @@
             font-size: 13.5px;
             color: #065F46;
         }
+        .peringatan-besar {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 13px;
+        }
         @media (max-width: 480px) {
             body { padding: 10px; }
             .kotak-login { max-width: 100%; width: 96%; }
@@ -533,11 +538,9 @@
     <div class="pilih-bagian">
         <h3>📍 PILIH TAHUN DAN BIDANG</h3>
         <div id="blokPetunjukAdmin" class="sembunyi">
-            <div class="petunjuk-penting">
-                <strong>⚠️ PETUNJUK PENTING:</strong><br>
-                1. Buat folder khusus di komputer, misal: <code>D:\ARSIP_SK_2026\</code><br>
-                2. Simpan semua file PDF di folder tersebut<br>
-                3. Jangan pindahkan/ubah nama folder setelah digunakan — tautan bisa putus!
+            <div class="peringatan-besar">
+                ⚠️ <strong>Catatan Penting:</strong><br>
+                File disimpan di penyimpanan browser perangkat ini. Buka dari komputer/perangkat lain = daftar tampil, tapi file tidak bisa dibuka. Gunakan dari perangkat yang sama atau unggah ulang di perangkat lain.
             </div>
             <div class="info-format">
                 ✅ <strong>Format Nama File:</strong> <code>[Tahun]-[Kode]-[Nomor]-[Perihal].pdf</code><br>
@@ -570,12 +573,12 @@
         </div>
         <div class="bagian-unggah" id="bagianUnggah">
             <h4 id="judulUnggah">➕ TAMBAHKAN FILE KE DAFTAR ARSIP</h4>
-            <p id="keteranganUnggah" style="font-size:13px; margin-bottom:10px; color:#333;">Pilih file dari folder arsip → nama file akan dicatat dalam daftar</p>
+            <p id="keteranganUnggah" style="font-size:13px; margin-bottom:10px; color:#333;">Pilih file → file akan disimpan di daftar arsip</p>
             <input type="file" id="fileBaru" accept=".pdf,.doc,.docx,.jpg,.png">
             <button class="tombol tombol-hijau" id="tombolSimpan" onclick="simpanBerkas()">✅ MASUKKAN KE DAFTAR</button>
             <span id="statusUnggah"></span>
             <div class="info-kapasitas" id="infoKapasitas">
-                ✅ <strong>Tidak ada batasan kapasitas!</strong> Ruang sesuai kapasitas harddisk komputer Anda.
+                ⚠️ <strong>Catatan:</strong> Ukuran file mempengaruhi ketersediaan ruang penyimpanan browser.
             </div>
         </div>
     </div>
@@ -597,7 +600,6 @@
     </div>
 </div>
 <script>
-const MAKSIMAL_SK = 9999;
 const daftarPengguna = {
     "admin_SK": { sandi: "admin1993", peran: "admin" },
     "paraha":   { sandi: "paraha2026", peran: "pembaca" }
@@ -616,18 +618,21 @@ const daftarBidang = {
     "PL": "Perlengkapan",
     "HM": "Humas"
 };
+
 function ambilDaftarSK(thn, kd) {
     const simpanan = localStorage.getItem("arsipSK_" + thn + "_" + kd);
     return simpanan ? JSON.parse(simpanan) : [];
 }
+
 function simpanDaftarSK(thn, kd, daftar) {
     try {
         localStorage.setItem("arsipSK_" + thn + "_" + kd, JSON.stringify(daftar));
         return { berhasil: true };
     } catch (e) {
-        return { berhasil: false, pesan: "Penyimpanan daftar penuh! Hapus beberapa catatan dulu." };
+        return { berhasil: false, pesan: "Penyimpanan penuh! Hapus beberapa catatan dulu." };
     }
 }
+
 window.addEventListener('DOMContentLoaded', function() {
     const ingatSaya = localStorage.getItem("ingatSaya");
     if (ingatSaya === "ya") {
@@ -641,6 +646,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 function cekLogin() {
     const user = document.getElementById("userLogin").value.trim();
     const sandi = document.getElementById("passLogin").value;
@@ -682,10 +688,12 @@ function cekLogin() {
         document.getElementById("pesanSalah").style.display = "block";
     }
 }
+
 function togglePassword() {
     const input = document.getElementById("passLogin");
     input.type = input.type === "password" ? "text" : "password";
 }
+
 document.getElementById("pilihTahun").addEventListener("change", function() {
     if (this.value === "lainnya") {
         const tahunBaru = prompt("Masukkan Tahun Baru (contoh: 2029):");
@@ -701,6 +709,7 @@ document.getElementById("pilihTahun").addEventListener("change", function() {
     }
     tampilkanDaftar();
 });
+
 function tampilkanDaftar() {
     const thn = document.getElementById("pilihTahun").value;
     const kd = document.getElementById("pilihBidang").value;
@@ -715,13 +724,14 @@ function tampilkanDaftar() {
     daftar.forEach((berkas, idx) => {
         const baris = document.createElement("tr");
         let kolomAksi = "";
+        const tautanBuka = `javascript:bukaFileSimpan('${thn}','${kd}',${idx})`;
         if (peranSaatIni === "admin") {
             kolomAksi = `
-                <a href="${berkas.url}" target="_blank" class="tombol tombol-biru" style="padding:4px 10px; font-size:12px; margin-right:5px;">📂 Buka</a>
+                <a href="${tautanBuka}" class="tombol tombol-biru" style="padding:4px 10px; font-size:12px; margin-right:5px;">📂 Buka</a>
                 <button class="tombol-hapus" onclick="hapusBerkas('${thn}','${kd}',${idx})">Hapus</button>
             `;
         } else {
-            kolomAksi = `<a href="${berkas.url}" target="_blank" class="tombol tombol-biru" style="padding:4px 10px; font-size:12px;">📂 Buka</a>`;
+            kolomAksi = `<a href="${tautanBuka}" class="tombol tombol-biru" style="padding:4px 10px; font-size:12px;">📂 Buka</a>`;
         }
         baris.innerHTML = `
             <td>${idx+1}</td>
@@ -732,6 +742,33 @@ function tampilkanDaftar() {
         isi.appendChild(baris);
     });
 }
+
+// Fungsi buka file dari data tersimpan
+function bukaFileSimpan(thn, kd, idx) {
+    const daftar = ambilDaftarSK(thn, kd);
+    const berkas = daftar[idx];
+    if (!berkas || !berkas.data) {
+        alert("❌ File tidak tersedia. Kemudian ditambahkan dari perangkat lain atau data hilang.");
+        return;
+    }
+    const blob = dataURLkeBlob(berkas.data);
+    const url = URL.createObjectURL(blob);
+    window.open(url, '_blank');
+    // Bebaskan memori setelah dibuka
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+function dataURLkeBlob(dataUrl) {
+    const bagian = dataUrl.split(',');
+    const tipe = bagian[0].match(/:(.*?);/)[1];
+    const biner = atob(bagian[1]);
+    const arrBiner = new Uint8Array(biner.length);
+    for (let i = 0; i < biner.length; i++) {
+        arrBiner[i] = biner.charCodeAt(i);
+    }
+    return new Blob([arrBiner], { type: tipe });
+}
+
 function simpanBerkas() {
     if (peranSaatIni !== "admin") {
         alert("🔒 Maaf, hanya Administrator yang dapat menambah arsip!");
@@ -745,37 +782,41 @@ function simpanBerkas() {
         alert("⚠️ Silakan pilih file terlebih dahulu!"); 
         return; 
     }
-    const urlFile = URL.createObjectURL(file);
-    const namaFile = file.name;
-    const hariIni = new Date().toLocaleDateString('id-ID', {day:'2-digit', month:'2-digit', year:'numeric'});
-    daftar.unshift({
-        nama: namaFile,
-        tanggal: hariIni,
-        url: urlFile,
-        ukuran: (file.size / 1024).toFixed(1) + " KB"
-    });
-    const hasil = simpanDaftarSK(thn, kd, daftar);
-    if (!hasil.berhasil) {
-        alert("❌ " + hasil.pesan);
-        return;
-    }
-    document.getElementById("statusUnggah").textContent = "✅ Berhasil ditambahkan: " + namaFile;
-    document.getElementById("fileBaru").value = "";
-    tampilkanDaftar();
-    setTimeout(() => {
-        document.getElementById("statusUnggah").textContent = "";
-    }, 4000);
+
+    const pembaca = new FileReader();
+    pembaca.onload = function(e) {
+        const hariIni = new Date().toLocaleDateString('id-ID', {day:'2-digit', month:'2-digit', year:'numeric'});
+        daftar.unshift({
+            nama: file.name,
+            tanggal: hariIni,
+            data: e.target.result, // Simpan isi file langsung
+            ukuran: (file.size / 1024).toFixed(1) + " KB"
+        });
+        const hasil = simpanDaftarSK(thn, kd, daftar);
+        if (!hasil.berhasil) {
+            alert("❌ " + hasil.pesan + "\nSaran: Kurangi ukuran file atau hapus arsip lama.");
+            return;
+        }
+        document.getElementById("statusUnggah").textContent = "✅ Berhasil ditambahkan: " + file.name;
+        document.getElementById("fileBaru").value = "";
+        tampilkanDaftar();
+        setTimeout(() => {
+            document.getElementById("statusUnggah").textContent = "";
+        }, 4000);
+    };
+    pembaca.readAsDataURL(file);
 }
+
 function hapusBerkas(thn, kd, idx) {
     if (peranSaatIni !== "admin") return;
-    if (confirm("⚠️ Hapus nama file ini dari daftar?\n(File asli di komputer TIDAK akan terhapus)")) {
+    if (confirm("⚠️ Hapus arsip ini dari daftar?\n(File asli di komputer TIDAK akan terhapus)")) {
         const daftar = ambilDaftarSK(thn, kd);
-        URL.revokeObjectURL(daftar[idx].url);
         daftar.splice(idx, 1);
         simpanDaftarSK(thn, kd, daftar);
         tampilkanDaftar();
     }
 }
+
 function keluarAplikasi() {
     if (confirm("🚪 Yakin ingin keluar dari aplikasi arsip?")) {
         if (!document.getElementById("ingatSaya").checked) {
