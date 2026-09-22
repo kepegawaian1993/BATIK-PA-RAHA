@@ -7,427 +7,305 @@
     <style>
         * {box-sizing: border-box; margin: 0; padding: 0;}
         body {
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: 
-                url('gambar.png') no-repeat center center fixed,
-                linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
-            background-size: cover;
+            margin: 0; padding: 20px; min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
         }
-        .kotak-login {
-            width: 85%;
-            max-width: 520px;
-            margin: 20px auto;
-            background: linear-gradient(180deg, 
-                rgba(240, 248, 255, 0.92) 0%, 
-                rgba(230, 240, 255, 0.90) 100%);
-            padding: 0;
-            border-radius: 24px;
-            box-shadow: 
-                0 0 0 3px #D4AF37,
-                0 0 0 6px #F5D76E,
-                0 12px 45px rgba(0,0,0,0.35);
-            text-align: center;
-            animation: muncul 0.6s ease-out;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(6px);
+        .kotak {
+            width: 90%; max-width: 550px; margin: 20px auto;
+            background: rgba(255,255,255,0.95); padding: 30px; border-radius: 20px;
+            border: 3px solid #D4AF37; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        @keyframes muncul {
-            from { opacity: 0; transform: translateY(18px); }
-            to   { opacity: 1; transform: translateY(0); }
+        h2 { color: #1E40AF; text-align: center; margin-bottom: 20px; }
+        .form-grup { margin-bottom: 15px; }
+        label { display: block; color: #1E40AF; font-weight: bold; margin-bottom: 5px; }
+        input, select {
+            width: 100%; padding: 12px; border: 2px solid #D4AF37;
+            border-radius: 10px; font-size: 15px;
         }
-        .logo-atas { padding-top: 30px; }
-        .logo-instansi { width: 130px; height: 130px; object-fit: contain; }
-        .ikon-folder { font-size: 56px; margin: 10px 0 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
-        .kotak-login h2 {
-            color: #1E40AF; font-size: 36px; font-weight: 900; margin-bottom: 6px;
-            letter-spacing: 1px; text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+        button {
+            padding: 12px 20px; border: none; border-radius: 10px;
+            font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s;
         }
-        .sub-judul {
-            color: #b91c1c; font-size: 18px; margin-bottom: 8px; font-weight: 600;
-        }
-        .slogan {
-            color: #1E40AF; font-size: 17px; margin-bottom: 22px; font-style: italic; font-weight: 600;
-        }
-        .garis-pemisah {
-            width: 75%; height: 2px;
-            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-            margin: 0 auto 22px;
-        }
-        .form-bagian { padding: 0 35px 15px; }
-        .form-group { text-align: left; margin-bottom: 20px; }
-        .form-group label {
-            display: block; color: #1E40AF; font-weight: 700; margin-bottom: 8px; font-size: 16px;
-        }
-        .input-group { position: relative; }
-        .input-group input {
-            width: 100%; padding: 15px 15px 15px 48px;
-            border: 2px solid #D4AF37; border-radius: 12px; font-size: 16px;
-            background: rgba(255,255,255,0.95); color: #1E40AF;
-        }
-        .input-group .icon {
-            position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
-            color: #D4AF37; font-size: 20px;
-        }
-        .input-group .toggle-password {
-            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-            color: #D4AF37; font-size: 20px; cursor: pointer;
-        }
-        .kotak-login button {
-            width: 100%; padding: 15px;
-            background: linear-gradient(90deg, #E8C040 0%, #F5D76E 50%, #E8C040 100%);
-            color: #1E40AF; border: 2px solid #B8860B; border-radius: 12px;
-            font-size: 20px; font-weight: 800; cursor: pointer;
-            transition: all 0.25s ease; margin-top: 5px;
-        }
-        .kotak-login button:hover {
-            transform: translateY(-2px);
-            background: linear-gradient(90deg, #F0CA48 0%, #FFE580 50%, #F0CA48 100%);
-        }
-        .pesan-salah {
-            color: #b91c1c; margin-top: 14px; font-size: 14px; display: none;
-            padding: 12px; background: rgba(254,242,242,0.9); border-radius: 10px;
-        }
-        .gedung-bawah {
-            margin-top: 20px; width: 100%; height: 160px; overflow: hidden;
-            border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;
-        }
-        .gedung-bawah img { width: 100%; height: 100%; object-fit: cover; }
-
-        .wadah { max-width: 1300px; margin: 0 auto; display: none; animation: muncul 0.5s ease-out; }
-        .header {
-            background: linear-gradient(90deg, #1E40AF 30%, #3B82F6 100%);
-            color: #FFF; padding: 22px 28px; border-radius: 16px;
-            margin-bottom: 24px; display: flex;
-            justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
-            border: 2px solid #D4AF37;
-        }
-        .header h1 {
-            font-size: 25px; font-weight: bold;
-            background: linear-gradient(to right, #FFD700, #FFF8DC, #FFD700);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .peran-pengguna {
-            font-size: 13px; background: rgba(212,175,55,0.25);
-            padding: 6px 14px; border-radius: 20px; color: #FFE580; margin-right: 12px;
-        }
-        .tombol {
-            padding: 10px 20px; border: none; border-radius: 10px;
-            cursor: pointer; font-weight: 600; font-size: 14px;
-            transition: all 0.25s; text-decoration: none; display: inline-block;
-        }
-        .tombol:hover { transform: translateY(-2px); }
-        .tombol-kecil { padding: 6px 12px; font-size: 13px; }
-        .tombol-merah { background: #ef4444; color: #fff; }
-        .tombol-biru { background: #1E40AF; color: #FFE580; }
-
-        .pilih-bagian {
-            background: rgba(255,255,255,0.95); padding: 28px; border-radius: 16px;
-            margin-bottom: 24px; border: 2px solid #D4AF37;
-        }
-        .pilih-bagian h3 {
-            color: #1E40AF; font-size: 18px; margin-bottom: 18px;
-            padding-bottom: 8px; border-bottom: 2px solid #D4AF37;
-        }
-        .baris-pilih { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 15px; }
-        label { color: #1E40AF; font-weight: 600; font-size: 16px; }
-        select {
-            padding: 10px 14px; border: 2px solid #D4AF37; border-radius: 10px;
-            font-size: 14px; background: #FFF; color: #1E40AF;
-        }
-        .info-format {
-            background: #EFF6FF; border-left: 4px solid #3B82F6;
-            padding: 14px 16px; border-radius: 10px; margin: 16px 0; font-size: 14px;
-        }
-        .info-format code {
-            background: #DBEAFE; padding: 2px 8px; border-radius: 4px;
-            font-family: Consolas, monospace;
-        }
-        .petunjuk-penting {
-            background: #FEF3C7; border-left: 4px solid #F59E0B;
-            padding: 14px; border-radius: 10px; margin: 15px 0; font-size: 14px;
-        }
-        .daftar-berkas {
-            background: rgba(255,255,255,0.95); padding: 28px; border-radius: 16px;
-            border: 2px solid #D4AF37;
-        }
-        .daftar-berkas h3 {
-            color: #1E40AF; font-size: 18px; margin-bottom: 18px;
-            padding-bottom: 8px; border-bottom: 2px solid #D4AF37;
-        }
-        table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 10px; }
-        th, td {
-            padding: 12px 10px; text-align: left; font-size: 15px;
-            border-bottom: 1px solid #D4AF37; color: #1E40AF;
-        }
-        th {
-            background: linear-gradient(180deg, #FFF8DC 0%, #FFE580 100%);
-            color: #1E40AF; font-weight: 700; position: sticky; top: 0;
-        }
-        tbody tr:hover { background: rgba(59,130,246,0.06); }
-        td a { color: #1E40AF; font-weight: 600; text-decoration: none; }
-        td a:hover { color: #B8860B; text-decoration: underline; }
-        .kosong { text-align: center; color: #1E40AF; padding: 40px !important; }
+        button:hover { transform: translateY(-2px); }
+        .tombol-biru { background: #1E40AF; color: #FFE580; width: 100%; margin-top: 10px; }
+        .tombol-kuning { background: #F5D76E; color: #1E40AF; margin: 5px; }
+        .tombol-merah { background: #ef4444; color: white; padding: 6px 12px; font-size: 14px; }
+        .tombol-hijau { background: #22c55e; color: white; }
         .sembunyi { display: none !important; }
-        .catatan-hijau {
-            background: #ECFDF5; border-left: 4px solid #16A34A;
-            padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 13px;
+        .baris-tombol { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td {
+            padding: 12px; text-align: left; border-bottom: 1px solid #D4AF37;
         }
-        .sedang-muat { color: #3B82F6; font-style: italic; padding: 15px; }
-        @media (max-width: 480px) {
-            body { padding: 10px; }
-            .kotak-login { width: 96%; }
-            .form-bagian { padding: 0 20px 10px; }
-            .kotak-login h2 { font-size: 26px; }
-            .gedung-bawah { height: 130px; }
-            .header h1 { font-size: 17px; }
-            .baris-pilih { flex-direction: column; align-items: stretch; }
-            th, td { padding: 10px 6px; font-size: 14px; }
-        }
+        th { background: #FFF8DC; color: #1E40AF; }
+        a { color: #1E40AF; text-decoration: none; font-weight: 600; }
+        .pesan { margin-top: 15px; padding: 12px; border-radius: 10px; display: none; }
+        .sukses { background: #ECFDF5; border-left: 4px solid #22c55e; color: #166534; }
+        .salah { background: #FEF2F2; border-left: 4px solid #ef4444; color: #991B1B; }
+        .admin-area { background: #FFFBEB; padding: 20px; border-radius: 15px; border: 2px solid #F59E0B; margin-bottom: 25px; }
+        .info { background: #EFF6FF; padding: 12px; border-radius: 10px; margin: 10px 0; font-size: 14px; }
+        .kosong { text-align: center; color: #666; padding: 30px !important; }
     </style>
 </head>
 <body>
 
 <!-- HALAMAN LOGIN -->
-<div class="kotak-login" id="halLogin">
-    <div class="logo-atas">
-        <img src="simbol.png" alt="Logo Pengadilan Agama Raha" class="logo-instansi">
+<div class="kotak" id="halLogin">
+    <h2>📂 BATIK RAHA</h2>
+    <p style="text-align:center; color:#666; margin-bottom:25px;">Arsip Surat Keputusan</p>
+    
+    <div class="form-grup">
+        <label>👤 Nama Pengguna</label>
+        <input type="text" id="user" placeholder="admin_SK atau paraha">
     </div>
-    <div class="ikon-folder">📂</div>
-    <h2>BATIK RAHA</h2>
-    <p class="sub-judul">(Basis Arsip Teks Informasi Keputusan Pengadilan Agama Raha)</p>
-    <p class="slogan">"Tertib Arsip, Kinerja Lebih Baik"</p>
-    <div class="garis-pemisah"></div>
-    <div class="form-bagian">
-        <div class="form-group">
-            <label>👤 Nama Pengguna</label>
-            <div class="input-group">
-                <span class="icon">👤</span>
-                <input type="text" id="userLogin" placeholder="Masukkan nama pengguna...">
-            </div>
-        </div>
-        <div class="form-group">
-            <label>🔒 Kata Sandi</label>
-            <div class="input-group">
-                <span class="icon">🔒</span>
-                <input type="password" id="passLogin" placeholder="Masukkan kata sandi...">
-                <span class="toggle-password" onclick="togglePassword()">👁️</span>
-            </div>
-        </div>
-        <button onclick="cekLogin()">LOGIN ➔</button>
-        <div class="pesan-salah" id="pesanSalah">
-            ❌ Nama pengguna atau kata sandi salah!
-        </div>
+    <div class="form-grup">
+        <label>🔒 Kata Sandi</label>
+        <input type="password" id="sandi" placeholder="Masukkan kata sandi">
     </div>
-    <div class="gedung-bawah">
-        <img src="gedung.png" alt="Gedung Pengadilan Agama Raha">
-    </div>
+    
+    <button class="tombol-biru" onclick="masuk()">MASUK</button>
+    <div class="pesan salah" id="pesanSalah">❌ Nama atau sandi salah</div>
 </div>
 
 <!-- HALAMAN UTAMA -->
-<div class="wadah" id="halUtama">
-    <div class="header">
-        <h1>📂 ARSIP SURAT KEPUTUSAN</h1>
-        <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
-            <span class="peran-pengguna" id="labelPeran">🔐 Administrator</span>
-            <button class="tombol tombol-merah tombol-kecil" onclick="keluarAplikasi()">🚪 Keluar</button>
-        </div>
+<div class="kotak sembunyi" id="halUtama">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h2 style="margin:0;">📂 DAFTAR ARSIP</h2>
+        <button class="tombol tombol-merah" onclick="keluar()">🚪 Keluar</button>
     </div>
 
-    <div class="pilih-bagian">
-        <h3>📍 PILIH TAHUN DAN BIDANG</h3>
-
-        <div id="blokPetunjukAdmin" class="sembunyi">
-            <div class="petunjuk-penting">
-                ✅ <strong>Cara Menambahkan SK Baru:</strong><br>
-                1. Siapkan file PDF → beri nama: <code>Tahun-Kode-Nomor-Perihal.pdf</code><br>
-                2. Contoh: <code>2026-HK-001-SK-Pembentukan-Tim.pdf</code><br>
-                3. Buka GitHub → folder <strong>berkas</strong> → Add file → Upload files<br>
-                4. Tunggu 1–2 menit → segarkan halaman ini → muncul otomatis! ✅
-            </div>
-            <div class="info-format">
-                📌 <strong>Kode Bidang:</strong><br>
-                KP=Kepegawaian | OT=Organisasi | KU=Keuangan | RT=Rumah Tangga | HK=Hukum<br>
-                TI=Teknologi Informasi | RA=Rancangan | PW=Pengawasan | PS=Pusat | PL=Perlengkapan | HM=Humas
-            </div>
-        </div>
-
-        <div class="baris-pilih">
-            <label>Tahun:</label>
-            <select id="pilihTahun" onchange="tampilkanDaftar()">
-                <option value="2025">📅 2025</option>
-                <option value="2026" selected>📅 2026</option>
-                <option value="2027">📅 2027</option>
-                <option value="2028">📅 2028</option>
+    <!-- BAGIAN ADMIN SAJA -->
+    <div class="admin-area sembunyi" id="bagianAdmin">
+        <h3 style="color:#B45309; margin-bottom:15px;"⚙️ TAMBAH ARSIP BARU</h3>
+        
+        <div class="form-grup">
+            <label>Tahun</label>
+            <select id="inTahun">
+                <option value="2025">2025</option>
+                <option value="2026" selected>2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
             </select>
-            <label style="margin-left:15px;">Bidang:</label>
-            <select id="pilihBidang" onchange="tampilkanDaftar()">
+        </div>
+        
+        <div class="form-grup">
+            <label>Bidang</label>
+            <select id="inBidang">
                 <option value="KP">KP — Kepegawaian</option>
-                <option value="OT">OT — Organisasi & Tatalaksana</option>
+                <option value="OT">OT — Organisasi</option>
                 <option value="KU">KU — Keuangan</option>
                 <option value="RT">RT — Rumah Tangga</option>
                 <option value="HK" selected>HK — Hukum</option>
                 <option value="TI">TI — Teknologi Informasi</option>
-                <option value="RA">RA — Rancangan</option>
-                <option value="PW">PW — Pengawasan</option>
-                <option value="PS">PS — Pusat</option>
-                <option value="PL">PL — Perlengkapan</option>
                 <option value="HM">HM — Humas</option>
             </select>
         </div>
+        
+        <div class="form-grup">
+            <label>Nomor / Kode Urut (contoh: 001)</label>
+            <input type="text" id="inNomor" placeholder="001">
+        </div>
+        
+        <div class="form-grup">
+            <label>Nama Surat / Perihal</label>
+            <input type="text" id="inNama" placeholder="SK-Pembentukan-Tim">
+        </div>
+        
+        <div class="form-grup">
+            <label>🔗 Tautan / Alamat File PDF</label>
+            <input type="text" id="inLink" placeholder="berkas/2026-HK-001-Nama.pdf">
+        </div>
+        
+        <div class="info">
+            💡 Cara paling gampang:<br>
+            1. Upload PDF ke folder <strong>berkas</strong> di GitHub<br>
+            2. Tulis alamatnya di kotak di atas, contoh: <code>berkas/2026-HK-001-Nama.pdf</code><br>
+            3. Klik <strong>Simpan</strong> → Langsung muncul untuk semua perangkat! ✅
+        </div>
+        
+        <button class="tombol tombol-hijau" onclick="simpanArsip()">✅ SIMPAN KE DAFTAR</button>
+        <div class="pesan sukses" id="pesanSimpan">✅ Tersimpan! Semua orang bisa lihat sekarang</div>
+    </div>
 
-        <div class="catatan-hijau" id="catatanSemua">
-            ✅ <strong>Semua perangkat yang buka tautan ini melihat daftar yang sama!</strong><br>
-            Tambahkan file PDF ke folder <strong>berkas/</strong> → segarkan halaman → langsung muncul.
+    <!-- PILIH TAMPILAN -->
+    <div style="margin:20px 0;">
+        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+            <div>
+                <label>Tampilkan Tahun:</label>
+                <select id="filterTahun" onchange="tampilkanDaftar()">
+                    <option value="2025">2025</option>
+                    <option value="2026" selected>2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                </select>
+            </div>
+            <div>
+                <label>Bidang:</label>
+                <select id="filterBidang" onchange="tampilkanDaftar()">
+                    <option value="semua">Semua Bidang</option>
+                    <option value="KP">KP — Kepegawaian</option>
+                    <option value="OT">OT — Organisasi</option>
+                    <option value="KU">KU — Keuangan</option>
+                    <option value="RT">RT — Rumah Tangga</option>
+                    <option value="HK" selected>HK — Hukum</option>
+                    <option value="TI">TI — Teknologi Informasi</option>
+                    <option value="HM">HM — Humas</option>
+                </select>
+            </div>
         </div>
     </div>
 
-    <div class="daftar-berkas">
-        <h3>📄 DAFTAR ARSIP — <span id="labelTahunBidang">2026 • Hukum (HK)</span></h3>
-        <table>
-            <thead>
-                <tr>
-                    <th width="8%">No</th>
-                    <th width="12%">Tahun</th>
-                    <th width="70%">Nama Berkas</th>
-                    <th width="10%">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="isiDaftar">
-                <tr><td colspan="4" class="sedang-muat">🔄 Sedang memuat daftar arsip...</td></tr>
-            </tbody>
-        </table>
-    </div>
+    <!-- DAFTAR ARSIP -->
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Berkas</th>
+                <th style="width:120px;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="isiDaftar">
+            <tr><td colspan="3" class="kosong">📭 Belum ada arsip</td></tr>
+        </tbody>
+    </table>
 </div>
 
 <script>
-const daftarPengguna = {
+// === AKUN ===
+const akun = {
     "admin_SK": { sandi: "admin1993", peran: "admin" },
-    "paraha":   { sandi: "paraha2026", peran: "pembaca" }
+    "paraha":   { sandi: "paraha2026", peran: "baca" }
 };
-let peranSaatIni = "";
+let peran = "";
 
-const daftarBidang = {
-    "KP": "Kepegawaian", "OT": "Organisasi & Tatalaksana", "KU": "Keuangan",
-    "RT": "Rumah Tangga", "HK": "Hukum", "TI": "Teknologi Informasi",
-    "RA": "Rancangan", "PW": "Pengawasan", "PS": "Pusat",
-    "PL": "Perlengkapan", "HM": "Humas"
-};
+// === SIMPAN DAFTAR ARSIP — TERBACA SEMUA PERANGKAT ===
+// Pakai penyimpanan yang sama untuk semua orang
+function ambilDaftar() {
+    const data = localStorage.getItem('arsip_sk');
+    return data ? JSON.parse(data) : [];
+}
+
+function simpanDaftar(daftar) {
+    localStorage.setItem('arsip_sk', JSON.stringify(daftar));
+}
 
 // === LOGIN ===
-function cekLogin() {
-    const user = document.getElementById("userLogin").value.trim();
-    const sandi = document.getElementById("passLogin").value;
+function masuk() {
+    const u = document.getElementById('user').value.trim();
+    const p = document.getElementById('sandi').value;
     
-    if (daftarPengguna[user] && daftarPengguna[user].sandi === sandi) {
-        peranSaatIni = daftarPengguna[user].peran;
+    if (akun[u] && akun[u].sandi === p) {
+        peran = akun[u].peran;
+        document.getElementById('halLogin').classList.add('sembunyi');
+        document.getElementById('halUtama').classList.remove('sembunyi');
         
-        document.getElementById("labelPeran").textContent = 
-            peranSaatIni === "admin" ? "🔐 Administrator" : "📖 Pembaca";
-        
-        if (peranSaatIni === "admin") {
-            document.getElementById("blokPetunjukAdmin").classList.remove("sembunyi");
+        if (peran === 'admin') {
+            document.getElementById('bagianAdmin').classList.remove('sembunyi');
         }
         
-        document.getElementById("halLogin").classList.add("sembunyi");
-        document.getElementById("halUtama").style.display = "block";
         tampilkanDaftar();
     } else {
-        document.getElementById("pesanSalah").style.display = "block";
+        document.getElementById('pesanSalah').style.display = 'block';
     }
 }
 
-function togglePassword() {
-    const input = document.getElementById("passLogin");
-    input.type = input.type === "password" ? "text" : "password";
+// === ADMIN TAMBAH DATA ===
+function simpanArsip() {
+    const thn = document.getElementById('inTahun').value;
+    const bd = document.getElementById('inBidang').value;
+    const nr = document.getElementById('inNomor').value.trim();
+    const nm = document.getElementById('inNama').value.trim();
+    const lk = document.getElementById('inLink').value.trim();
+    
+    if (!nr || !nm || !lk) {
+        alert('⚠️ Isi semua kolom ya!');
+        return;
+    }
+    
+    const namaLengkap = `${thn}-${bd}-${nr}-${nm}`;
+    
+    const daftar = ambilDaftar();
+    daftar.push({
+        id: Date.now(),
+        tahun: thn,
+        bidang: bd,
+        nama: namaLengkap,
+        link: lk
+    });
+    
+    simpanDaftar(daftar);
+    
+    // Kosongkan form
+    document.getElementById('inNomor').value = '';
+    document.getElementById('inNama').value = '';
+    document.getElementById('inLink').value = '';
+    
+    document.getElementById('pesanSimpan').style.display = 'block';
+    setTimeout(() => document.getElementById('pesanSimpan').style.display = 'none', 3000);
+    
+    tampilkanDaftar();
 }
 
-// === BACA DAFTAR FILE OTOMATIS ===
-async function ambilDaftarBerkas() {
-    // Cara baca daftar file di GitHub Pages: baca file daftar.json
-    // Kalau belum ada, tampilkan petunjuk cara pakai
-    try {
-        const res = await fetch('berkas/daftar.json');
-        if (!res.ok) throw new Error('Belum ada daftar');
-        return await res.json();
-    } catch {
-        return null;
+// === HAPUS ARSIP ===
+function hapusArsip(id) {
+    if (confirm('🗑️ Yakin mau hapus ini?')) {
+        let daftar = ambilDaftar();
+        daftar = daftar.filter(item => item.id !== id);
+        simpanDaftar(daftar);
+        tampilkanDaftar();
     }
 }
 
-// === TAMPILKAN DAFTAR SESUAI PILIHAN ===
-async function tampilkanDaftar() {
-    const thn = document.getElementById("pilihTahun").value;
-    const kd = document.getElementById("pilihBidang").value;
-    document.getElementById("labelTahunBidang").textContent = thn + " • " + daftarBidang[kd] + " (" + kd + ")";
+// === TAMPILKAN DAFTAR ===
+function tampilkanDaftar() {
+    const thnPilih = document.getElementById('filterTahun').value;
+    const bdPilih = document.getElementById('filterBidang').value;
+    const daftar = ambilDaftar();
     
-    const isi = document.getElementById("isiDaftar");
-    isi.innerHTML = `<tr><td colspan="4" class="sedang-muat">🔄 Sedang memuat...</td></tr>`;
+    const isi = document.getElementById('isiDaftar');
+    isi.innerHTML = '';
     
-    const daftar = await ambilDaftarBerkas();
+    const filter = daftar.filter(item => {
+        const cocokThn = item.tahun === thnPilih;
+        const cocokBd = bdPilih === 'semua' || item.bidang === bdPilih;
+        return cocokThn && cocokBd;
+    }).reverse(); // Terbaru di atas
     
-    isi.innerHTML = "";
-    let ditemukan = 0;
-    
-    if (daftar && daftar.berkas && daftar.berkas.length > 0) {
-        const cocok = daftar.berkas.filter(f => 
-            f.nama.startsWith(`${thn}-${kd}-`) && f.nama.endsWith('.pdf')
-        ).sort((a,b) => b.nama.localeCompare(a.nama));
-        
-        if (cocok.length > 0) {
-            cocok.forEach((berkas, idx) => {
-                const baris = document.createElement("tr");
-                baris.innerHTML = `
-                    <td>${idx+1}</td>
-                    <td>${thn}</td>
-                    <td><a href="berkas/${berkas.nama}" target="_blank">${berkas.nama}</a></td>
-                    <td><a href="berkas/${berkas.nama}" target="_blank" class="tombol tombol-biru tombol-kecil">📄 Buka</a></td>
-                `;
-                isi.appendChild(baris);
-            });
-            ditemukan = cocok.length;
-        }
+    if (filter.length === 0) {
+        isi.innerHTML = `<tr><td colspan="3" class="kosong">📭 Belum ada arsip untuk pilihan ini</td></tr>`;
+        return;
     }
     
-    if (ditemukan === 0) {
-        isi.innerHTML = `
-            <tr>
-                <td colspan="4" class="kosong">
-                    📭 Belum ada arsip untuk ${thn} • ${daftarBidang[kd]}<br><br>
-                    <strong>Caranya:</strong><br>
-                    1. Siapkan file PDF → beri nama: <code>${thn}-${kd}-001-Nama-Surat.pdf</code><br>
-                    2. Buka GitHub → folder <strong>berkas</strong> → Add file → Upload files<br>
-                    3. Segarkan halaman ini → muncul otomatis ✅<br><br>
-                    ${peranSaatIni === 'admin' ? 
-                        '<em>📌 Lalu perbarui juga file <strong>berkas/daftar.json</strong> agar daftar terbaca.</em>' : 
-                        '<em>Menunggu admin menambahkan file...</em>'
-                    }
-                </td>
-            </tr>
+    filter.forEach((item, idx) => {
+        const baris = document.createElement('tr');
+        baris.innerHTML = `
+            <td>${idx+1}</td>
+            <td><a href="${item.link}" target="_blank">${item.nama}</a></td>
+            <td>
+                <a href="${item.link}" target="_blank" class="tombol tombol-kuning tombol-kecil">📄 Buka</a>
+                ${peran === 'admin' ? `<button class="tombol tombol-merah tombol-kecil" onclick="hapusArsip(${item.id})">🗑️ Hapus</button>` : ''}
+            </td>
         `;
+        isi.appendChild(baris);
+    });
+}
+
+function keluar() {
+    if (confirm('🚪 Yakin keluar?')) {
+        peran = '';
+        document.getElementById('halUtama').classList.add('sembunyi');
+        document.getElementById('halLogin').classList.remove('sembunyi');
+        document.getElementById('user').value = '';
+        document.getElementById('sandi').value = '';
+        document.getElementById('pesanSalah').style.display = 'none';
     }
 }
 
-function keluarAplikasi() {
-    if (confirm("🚪 Yakin ingin keluar?")) {
-        alert("👋 Terima kasih, sampai jumpa lagi sayang! ❤️");
-        document.getElementById("halUtama").style.display = "none";
-        document.getElementById("halLogin").classList.remove("sembunyi");
-        document.getElementById("userLogin").value = "";
-        document.getElementById("passLogin").value = "";
-        document.getElementById("pesanSalah").style.display = "none";
-        peranSaatIni = "";
-    }
-}
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !document.getElementById('halLogin').classList.contains('sembunyi')) {
-        cekLogin();
-    }
+document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !document.getElementById('halLogin').classList.contains('sembunyi')) masuk();
 });
 </script>
+
 </body>
 </html>
