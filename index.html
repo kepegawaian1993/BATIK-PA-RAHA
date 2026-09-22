@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BATIK RAHA — Arsip SK </title>
+    <title>BATIK RAHA — Arsip SK</title>
     <style>
         * {box-sizing: border-box; margin: 0; padding: 0;}
         body {
             margin: 0;
             padding: 20px;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: 
                 url('gambar.png') no-repeat center center fixed,
@@ -24,9 +21,8 @@
             max-width: 520px;
             margin: 20px auto;
             background: linear-gradient(180deg, 
-                rgba(240, 248, 255, 0.88) 0%, 
-                rgba(230, 240, 255, 0.85) 50%, 
-                rgba(240, 248, 255, 0.88) 100%);
+                rgba(240, 248, 255, 0.92) 0%, 
+                rgba(230, 240, 255, 0.90) 100%);
             padding: 0;
             border-radius: 24px;
             box-shadow: 
@@ -43,459 +39,148 @@
             from { opacity: 0; transform: translateY(18px); }
             to   { opacity: 1; transform: translateY(0); }
         }
-        .bingkai-aplikasi {
-            position: absolute;
-            inset: 0;
-            border-radius: 24px;
-            pointer-events: none;
-            z-index: 0;
-            background-image: url('');
-            opacity: 0.15;
-        }
-        .logo-atas {
-            position: relative;
-            z-index: 1;
-            padding-top: 30px;
-        }
-        .logo-instansi {
-            width: 130px;
-            height: 130px;
-            object-fit: contain;
-            display: inline-block;
-        }
-        .ikon-folder {
-            font-size: 56px;
-            margin: 10px 0 8px;
-            position: relative;
-            z-index: 1;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-        }
+        .logo-atas { padding-top: 30px; }
+        .logo-instansi { width: 130px; height: 130px; object-fit: contain; }
+        .ikon-folder { font-size: 56px; margin: 10px 0 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
         .kotak-login h2 {
-            color: #1E40AF;
-            font-size: 36px;
-            font-weight: 900;
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.6);
+            color: #1E40AF; font-size: 36px; font-weight: 900; margin-bottom: 6px;
+            letter-spacing: 1px; text-shadow: 0 1px 2px rgba(255,255,255,0.6);
         }
         .sub-judul {
-            font-family: 'Arial Narrow', Arial, sans-serif;
-            color: #b91c1c;
-            font-size: 18px;
-            margin-bottom: 8px;
-            position: relative;
-            z-index: 1;
-            font-weight: 600;
+            color: #b91c1c; font-size: 18px; margin-bottom: 8px; font-weight: 600;
         }
         .slogan {
-            color: #1E40AF;
-            font-size: 17px;
-            margin-bottom: 22px;
-            position: relative;
-            z-index: 1;
-            font-style: italic;
-            font-weight: 600;
+            color: #1E40AF; font-size: 17px; margin-bottom: 22px; font-style: italic; font-weight: 600;
         }
         .garis-pemisah {
-            width: 75%;
-            height: 2px;
+            width: 75%; height: 2px;
             background: linear-gradient(90deg, transparent, #D4AF37, transparent);
             margin: 0 auto 22px;
-            position: relative;
-            z-index: 1;
         }
-        .form-bagian {
-            padding: 0 35px 15px;
-            position: relative;
-            z-index: 1;
-        }
-        .form-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
+        .form-bagian { padding: 0 35px 15px; }
+        .form-group { text-align: left; margin-bottom: 20px; }
         .form-group label {
-            display: block;
-            color: #1E40AF;
-            font-weight: 700;
-            margin-bottom: 8px;
-            font-size: 16px;
+            display: block; color: #1E40AF; font-weight: 700; margin-bottom: 8px; font-size: 16px;
         }
-        .simpan-kata-sandi {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: -5px 0 20px;
-            cursor: pointer;
-            position: relative;
-            z-index: 1;
-        }
-        .simpan-kata-sandi input {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-        .simpan-kata-sandi span {
-            color: #1E40AF;
-            font-size: 15px;
-            font-weight: 500;
-        }
-        .input-group {
-            position: relative;
-        }
+        .input-group { position: relative; }
         .input-group input {
-            width: 100%;
-            padding: 15px 15px 15px 48px;
-            border: 2px solid #D4AF37;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.92);
-            color: #1E40AF;
-        }
-        .input-group input::placeholder {
-            color: #94A3B8;
-        }
-        .input-group input:focus {
-            outline: none;
-            border-color: #F5D76E;
-            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.25);
-            background: #FFFFFF;
+            width: 100%; padding: 15px 15px 15px 48px;
+            border: 2px solid #D4AF37; border-radius: 12px; font-size: 16px;
+            background: rgba(255,255,255,0.95); color: #1E40AF;
         }
         .input-group .icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #D4AF37;
-            font-size: 20px;
+            position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+            color: #D4AF37; font-size: 20px;
         }
         .input-group .toggle-password {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #D4AF37;
-            font-size: 20px;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .input-group .toggle-password:hover {
-            color: #B8860B;
+            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+            color: #D4AF37; font-size: 20px; cursor: pointer;
         }
         .kotak-login button {
-            width: 100%;
-            padding: 15px;
+            width: 100%; padding: 15px;
             background: linear-gradient(90deg, #E8C040 0%, #F5D76E 50%, #E8C040 100%);
-            color: #1E40AF;
-            border: 2px solid #B8860B;
-            border-radius: 12px;
-            font-size: 20px;
-            font-family: 'Segoe UI', sans-serif;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            margin-top: 5px;
-            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.35);
-            position: relative;
-            z-index: 1;
+            color: #1E40AF; border: 2px solid #B8860B; border-radius: 12px;
+            font-size: 20px; font-weight: 800; cursor: pointer;
+            transition: all 0.25s ease; margin-top: 5px;
         }
         .kotak-login button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(184, 134, 11, 0.45);
             background: linear-gradient(90deg, #F0CA48 0%, #FFE580 50%, #F0CA48 100%);
         }
         .pesan-salah {
-            color: #b91c1c;
-            margin-top: 14px;
-            font-size: 14px;
-            display: none;
-            padding: 12px;
-            background: rgba(254, 242, 242, 0.9);
-            border-radius: 10px;
-            line-height: 1.5;
-            position: relative;
-            z-index: 1;
+            color: #b91c1c; margin-top: 14px; font-size: 14px; display: none;
+            padding: 12px; background: rgba(254,242,242,0.9); border-radius: 10px;
         }
         .gedung-bawah {
-            margin-top: 20px;
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            height: 160px;
-            overflow: hidden;
-            border-bottom-left-radius: 24px;
-            border-bottom-right-radius: 24px;
+            margin-top: 20px; width: 100%; height: 160px; overflow: hidden;
+            border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;
         }
-        .gedung-bawah img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-        .wadah {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: none;
-            animation: muncul 0.5s ease-out;
-        }
+        .gedung-bawah img { width: 100%; height: 100%; object-fit: cover; }
+
+        .wadah { max-width: 1300px; margin: 0 auto; display: none; animation: muncul 0.5s ease-out; }
         .header {
             background: linear-gradient(90deg, #1E40AF 30%, #3B82F6 100%);
-            color: #FFFFFF;
-            padding: 22px 28px;
-            border-radius: 16px;
-            margin-bottom: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            color: #FFF; padding: 22px 28px; border-radius: 16px;
+            margin-bottom: 24px; display: flex;
+            justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
             border: 2px solid #D4AF37;
         }
         .header h1 {
-            font-size: 25px;
-            letter-spacing: 0.3px;
-            font-weight: bold;
+            font-size: 25px; font-weight: bold;
             background: linear-gradient(to right, #FFD700, #FFF8DC, #FFD700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .peran-pengguna {
-            font-size: 13px;
-            background: rgba(212, 175, 55, 0.25);
-            padding: 6px 14px;
-            border-radius: 20px;
-            margin-right: 12px;
-            color: #FFE580;
+            font-size: 13px; background: rgba(212,175,55,0.25);
+            padding: 6px 14px; border-radius: 20px; color: #FFE580; margin-right: 12px;
         }
         .tombol {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.25s;
-            text-decoration: none;
-            display: inline-block;
+            padding: 10px 20px; border: none; border-radius: 10px;
+            cursor: pointer; font-weight: 600; font-size: 14px;
+            transition: all 0.25s; text-decoration: none; display: inline-block;
         }
-        .tombol:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .tombol-kecil {
-            padding: 6px 12px;
-            font-size: 13px;
-        }
-        .tombol-merah {
-            background: #ef4444;
-            color: #ffffff;
-        }
-        .tombol-hijau {
-            background: #16a34a;
-            color: #ffffff;
-        }
-        .tombol-biru {
-            background: #1E40AF;
-            color: #FFE580;
-        }
-        .tombol-ungu {
-            background: #7C3AED;
-            color: #ffffff;
-        }
-        .tombol-abu {
-            background: #94A3B8;
-            color: #000000;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
+        .tombol:hover { transform: translateY(-2px); }
+        .tombol-kecil { padding: 6px 12px; font-size: 13px; }
+        .tombol-merah { background: #ef4444; color: #fff; }
+        .tombol-biru { background: #1E40AF; color: #FFE580; }
+
         .pilih-bagian {
-            background: rgba(255, 255, 255, 0.92);
-            padding: 28px;
-            border-radius: 16px;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            border: 2px solid #D4AF37;
+            background: rgba(255,255,255,0.95); padding: 28px; border-radius: 16px;
+            margin-bottom: 24px; border: 2px solid #D4AF37;
         }
         .pilih-bagian h3 {
-            color: #1E40AF;
-            font-size: 18px;
-            margin-bottom: 18px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #D4AF37;
+            color: #1E40AF; font-size: 18px; margin-bottom: 18px;
+            padding-bottom: 8px; border-bottom: 2px solid #D4AF37;
         }
-        .baris-pilih {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        label {
-            color: #1E40AF;
-            font-weight: 600;
-            font-size: 16px;
-        }
-        select, input[type="file"] {
-            padding: 10px 14px;
-            border: 2px solid #D4AF37;
-            border-radius: 10px;
-            font-size: 14px;
-            background: #FFFFFF;
-            color: #1E40AF;
-        }
-        select:focus {
-            outline: none;
-            border-color: #B8860B;
+        .baris-pilih { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 15px; }
+        label { color: #1E40AF; font-weight: 600; font-size: 16px; }
+        select {
+            padding: 10px 14px; border: 2px solid #D4AF37; border-radius: 10px;
+            font-size: 14px; background: #FFF; color: #1E40AF;
         }
         .info-format {
-            background: #EFF6FF;
-            border-left: 4px solid #3B82F6;
-            padding: 14px 16px;
-            border-radius: 10px;
-            margin: 16px 0;
-            font-size: 13.5px;
-            color: #1E40AF;
-            line-height: 1.6;
+            background: #EFF6FF; border-left: 4px solid #3B82F6;
+            padding: 14px 16px; border-radius: 10px; margin: 16px 0; font-size: 14px;
         }
         .info-format code {
-            background: #DBEAFE;
-            padding: 2px 8px;
-            border-radius: 4px;
+            background: #DBEAFE; padding: 2px 8px; border-radius: 4px;
             font-family: Consolas, monospace;
-            color: #1E40AF;
         }
         .petunjuk-penting {
-            background: #FEF3C7;
-            border-left: 4px solid #F59E0B;
-            padding: 14px;
-            border-radius: 10px;
-            margin: 15px 0;
-            font-size: 14px;
-        }
-        .kotak-pindah-data {
-            background: #F5F3FF;
-            border-left: 4px solid #7C3AED;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 18px 0;
-        }
-        .bagian-unggah {
-            background: #F0FDF4;
-            border: 2px solid #D4AF37;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 18px;
-        }
-        .bagian-unggah.tidak-bisa {
-            background: #F1F5F9;
-            border-color: #94A3B8;
-            opacity: 0.7;
-        }
-        .bagian-unggah h4 {
-            color: #1E40AF;
-            margin-bottom: 12px;
-            font-size: 16px;
+            background: #FEF3C7; border-left: 4px solid #F59E0B;
+            padding: 14px; border-radius: 10px; margin: 15px 0; font-size: 14px;
         }
         .daftar-berkas {
-            background: rgba(255, 255, 255, 0.92);
-            padding: 28px;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            background: rgba(255,255,255,0.95); padding: 28px; border-radius: 16px;
             border: 2px solid #D4AF37;
         }
         .daftar-berkas h3 {
-            color: #1E40AF;
-            font-size: 18px;
-            margin-bottom: 18px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #D4AF37;
+            color: #1E40AF; font-size: 18px; margin-bottom: 18px;
+            padding-bottom: 8px; border-bottom: 2px solid #D4AF37;
         }
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-top: 10px;
-        }
+        table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 10px; }
         th, td {
-            padding: 12px 10px;
-            text-align: left;
-            font-size: 15px;
-            border-bottom: 1px solid #D4AF37;
-            color: #1E40AF;
+            padding: 12px 10px; text-align: left; font-size: 15px;
+            border-bottom: 1px solid #D4AF37; color: #1E40AF;
         }
         th {
             background: linear-gradient(180deg, #FFF8DC 0%, #FFE580 100%);
-            color: #1E40AF;
-            font-weight: 700;
-            position: sticky;
-            top: 0;
+            color: #1E40AF; font-weight: 700; position: sticky; top: 0;
         }
-        tbody tr:hover {
-            background: rgba(59, 130, 246, 0.06);
+        tbody tr:hover { background: rgba(59,130,246,0.06); }
+        td a { color: #1E40AF; font-weight: 600; text-decoration: none; }
+        td a:hover { color: #B8860B; text-decoration: underline; }
+        .kosong { text-align: center; color: #1E40AF; padding: 40px !important; }
+        .sembunyi { display: none !important; }
+        .catatan-hijau {
+            background: #ECFDF5; border-left: 4px solid #16A34A;
+            padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 13px;
         }
-        td a {
-            color: #1E40AF;
-            font-weight: 600;
-            text-decoration: underline;
-        }
-        td a:hover {
-            color: #B8860B;
-        }
-        .tombol-hapus {
-            padding: 7px 14px;
-            background: #FEF2F2;
-            color: #b91c1c;
-            border: 1px solid #EF4444;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-        }
-        .tombol-hapus:hover {
-            background: #FEE2E2;
-        }
-        .tombol-mati {
-            padding: 7px 14px;
-            background: #F1F5F9;
-            color: #666;
-            border: 1px solid #CCC;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: not-allowed;
-        }
-        .kosong {
-            text-align: center;
-            color: #1E40AF;
-            padding: 40px !important;
-        }
-        .sembunyi {
-            display: none !important;
-        }
-        .info-kapasitas {
-            background: #ECFDF5;
-            padding: 10px 14px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-size: 13.5px;
-            color: #065F46;
-        }
-        .peringatan-besar {
-            background: #FEF3C7;
-            border-left: 4px solid #F59E0B;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 8px;
-            font-size: 13px;
-        }
+        .sedang-muat { color: #3B82F6; font-style: italic; padding: 15px; }
         @media (max-width: 480px) {
             body { padding: 10px; }
-            .kotak-login { max-width: 100%; width: 96%; }
+            .kotak-login { width: 96%; }
             .form-bagian { padding: 0 20px 10px; }
-            .logo-instansi { width: 100px; height: 100px; }
             .kotak-login h2 { font-size: 26px; }
             .gedung-bawah { height: 130px; }
             .header h1 { font-size: 17px; }
@@ -505,8 +190,9 @@
     </style>
 </head>
 <body>
+
+<!-- HALAMAN LOGIN -->
 <div class="kotak-login" id="halLogin">
-    <div class="bingkai-aplikasi"></div>
     <div class="logo-atas">
         <img src="simbol.png" alt="Logo Pengadilan Agama Raha" class="logo-instansi">
     </div>
@@ -531,13 +217,9 @@
                 <span class="toggle-password" onclick="togglePassword()">👁️</span>
             </div>
         </div>
-        <label class="simpan-kata-sandi">
-            <input type="checkbox" id="ingatSaya">
-            <span>💾 Simpan Nama Pengguna & Kata Sandi</span>
-        </label>
         <button onclick="cekLogin()">LOGIN ➔</button>
         <div class="pesan-salah" id="pesanSalah">
-            ❌ Nama pengguna atau kata sandi salah! Silakan coba lagi.
+            ❌ Nama pengguna atau kata sandi salah!
         </div>
     </div>
     <div class="gedung-bawah">
@@ -545,12 +227,12 @@
     </div>
 </div>
 
+<!-- HALAMAN UTAMA -->
 <div class="wadah" id="halUtama">
     <div class="header">
-        <h1>📂 ARSIP SURAT KEPUTUSAN </h1>
+        <h1>📂 ARSIP SURAT KEPUTUSAN</h1>
         <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
             <span class="peran-pengguna" id="labelPeran">🔐 Administrator</span>
-            <button class="tombol tombol-ungu tombol-kecil" id="tombolPindahData" style="display:none;" onclick="bukaPindahData()">📦 Pindah Data</button>
             <button class="tombol tombol-merah tombol-kecil" onclick="keluarAplikasi()">🚪 Keluar</button>
         </div>
     </div>
@@ -560,32 +242,17 @@
 
         <div id="blokPetunjukAdmin" class="sembunyi">
             <div class="petunjuk-penting">
-                ⚠️ <strong>Catatan Penting:</strong><br>
-                Data tersimpan di perangkat ini. Untuk buka di HP/komputer lain, gunakan tombol <strong>📦 Pindah Data</strong> → Ekspor dulu, lalu Impor di perangkat tujuan.
+                ✅ <strong>Cara Menambahkan SK Baru:</strong><br>
+                1. Siapkan file PDF → beri nama: <code>Tahun-Kode-Nomor-Perihal.pdf</code><br>
+                2. Contoh: <code>2026-HK-001-SK-Pembentukan-Tim.pdf</code><br>
+                3. Buka GitHub → folder <strong>berkas</strong> → Add file → Upload files<br>
+                4. Tunggu 1–2 menit → segarkan halaman ini → muncul otomatis! ✅
             </div>
             <div class="info-format">
-                ✅ <strong>Format Nama File:</strong> <code>[Tahun]-[Kode]-[Nomor]-[Perihal].pdf</code><br>
-                💡 Contoh: <code>2026-HK-001-Protokol-Keamanan.pdf</code>
+                📌 <strong>Kode Bidang:</strong><br>
+                KP=Kepegawaian | OT=Organisasi | KU=Keuangan | RT=Rumah Tangga | HK=Hukum<br>
+                TI=Teknologi Informasi | RA=Rancangan | PW=Pengawasan | PS=Pusat | PL=Perlengkapan | HM=Humas
             </div>
-        </div>
-
-        <!-- Kotak Pindah Data -->
-        <div class="kotak-pindah-data sembunyi" id="kotakPindahData">
-            <h4 style="color:#7C3AED; margin-bottom:12px;">📦 Pindahkan Data Arsip</h4>
-            <p style="font-size:14px; margin-bottom:10px;">Gunakan fitur ini untuk memindahkan semua data ke perangkat lain.</p>
-            
-            <div style="margin-bottom:15px;">
-                <button class="tombol tombol-hijau" onclick="eksporSemuaData()">📤 EKSPOR Semua Data Arsip</button>
-                <p style="font-size:13px; margin-top:8px;">→ Unduh file cadangan, kirim ke perangkat lain</p>
-            </div>
-            
-            <div style="border-top:1px solid #CCC; padding-top:15px;">
-                <label>📥 IMPOR Data Cadangan:</label><br>
-                <input type="file" id="fileCadangan" accept=".json">
-                <button class="tombol tombol-biru" onclick="imporSemuaData()" style="margin-left:8px;">✅ MASUKKAN</button>
-                <p style="font-size:13px; margin-top:8px; color:#b91c1c;">⚠️ Data lama yang sama akan diganti!</p>
-            </div>
-            <button class="tombol tombol-kecil tombol-abu" onclick="tutupPindahData()" style="margin-top:10px;">Tutup</button>
         </div>
 
         <div class="baris-pilih">
@@ -595,7 +262,6 @@
                 <option value="2026" selected>📅 2026</option>
                 <option value="2027">📅 2027</option>
                 <option value="2028">📅 2028</option>
-                <option value="lainnya">➕ Tambah Tahun Baru...</option>
             </select>
             <label style="margin-left:15px;">Bidang:</label>
             <select id="pilihBidang" onchange="tampilkanDaftar()">
@@ -613,15 +279,9 @@
             </select>
         </div>
 
-        <div class="bagian-unggah" id="bagianUnggah">
-            <h4 id="judulUnggah">➕ TAMBAHKAN FILE KE DAFTAR ARSIP</h4>
-            <p id="keteranganUnggah" style="font-size:13px; margin-bottom:10px; color:#333;">Pilih file → file akan disimpan di daftar arsip</p>
-            <input type="file" id="fileBaru" accept=".pdf,.doc,.docx,.jpg,.png">
-            <button class="tombol tombol-hijau" id="tombolSimpan" onclick="simpanBerkas()">✅ MASUKKAN KE DAFTAR</button>
-            <span id="statusUnggah"></span>
-            <div class="info-kapasitas" id="infoKapasitas">
-                ⚠️ <strong>Catatan:</strong> Gunakan tombol <strong>"Pindah Data"</strong> untuk memindahkan ke perangkat lain.
-            </div>
+        <div class="catatan-hijau" id="catatanSemua">
+            ✅ <strong>Semua perangkat yang buka tautan ini melihat daftar yang sama!</strong><br>
+            Tambahkan file PDF ke folder <strong>berkas/</strong> → segarkan halaman → langsung muncul.
         </div>
     </div>
 
@@ -631,13 +291,13 @@
             <thead>
                 <tr>
                     <th width="8%">No</th>
-                    <th width="15%">Tanggal</th>
-                    <th width="62%">Nama Surat</th>
-                    <th width="15%">Aksi</th>
+                    <th width="12%">Tahun</th>
+                    <th width="70%">Nama Berkas</th>
+                    <th width="10%">Aksi</th>
                 </tr>
             </thead>
             <tbody id="isiDaftar">
-                <tr><td colspan="4" class="kosong">📭 Belum ada arsip.</td></tr>
+                <tr><td colspan="4" class="sedang-muat">🔄 Sedang memuat daftar arsip...</td></tr>
             </tbody>
         </table>
     </div>
@@ -651,150 +311,25 @@ const daftarPengguna = {
 let peranSaatIni = "";
 
 const daftarBidang = {
-    "KP": "Kepegawaian",
-    "OT": "Organisasi & Tatalaksana",
-    "KU": "Keuangan",
-    "RT": "Rumah Tangga",
-    "HK": "Hukum",
-    "TI": "Teknologi Informasi",
-    "RA": "Rancangan",
-    "PW": "Pengawasan",
-    "PS": "Pusat",
-    "PL": "Perlengkapan",
-    "HM": "Humas"
+    "KP": "Kepegawaian", "OT": "Organisasi & Tatalaksana", "KU": "Keuangan",
+    "RT": "Rumah Tangga", "HK": "Hukum", "TI": "Teknologi Informasi",
+    "RA": "Rancangan", "PW": "Pengawasan", "PS": "Pusat",
+    "PL": "Perlengkapan", "HM": "Humas"
 };
 
-// === FUNGSI PENYIMPANAN ===
-function ambilDaftarSK(thn, kd) {
-    const simpanan = localStorage.getItem("arsipSK_" + thn + "_" + kd);
-    return simpanan ? JSON.parse(simpanan) : [];
-}
-
-function simpanDaftarSK(thn, kd, daftar) {
-    try {
-        localStorage.setItem("arsipSK_" + thn + "_" + kd, JSON.stringify(daftar));
-        return { berhasil: true };
-    } catch (e) {
-        return { berhasil: false, pesan: "Penyimpanan penuh! Hapus beberapa catatan dulu." };
-    }
-}
-
-// === Pindah Data: Ekspor & Impor ===
-function bukaPindahData() {
-    document.getElementById("kotakPindahData").classList.toggle("sembunyi");
-}
-function tutupPindahData() {
-    document.getElementById("kotakPindahData").classList.add("sembunyi");
-}
-
-function eksporSemuaData() {
-    const semuaData = {};
-    for (let kunci in localStorage) {
-        if (kunci.startsWith("arsipSK_")) {
-            semuaData[kunci] = JSON.parse(localStorage[kunci]);
-        }
-    }
-    if (Object.keys(semuaData).length === 0) {
-        alert("⚠️ Belum ada data arsip untuk diekspor!");
-        return;
-    }
-    const berkas = JSON.stringify(semuaData, null, 2);
-    const blob = new Blob([berkas], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "arsip-batikraha-" + new Date().toISOString().slice(0,10) + ".json";
-    a.click();
-    URL.revokeObjectURL(url);
-    alert("✅ Data berhasil diunduh!\nKirim file ini ke perangkat lain lalu lakukan Impor.");
-}
-
-function imporSemuaData() {
-    const input = document.getElementById("fileCadangan");
-    if (!input.files[0]) {
-        alert("⚠️ Pilih file cadangan dulu!");
-        return;
-    }
-    if (!confirm("⚠️ Data baru akan digabungkan dengan data yang ada.\nLanjutkan?")) return;
-    
-    const pembaca = new FileReader();
-    pembaca.onload = function(e) {
-        try {
-            const dataMasuk = JSON.parse(e.target.result);
-            let jumlah = 0;
-            for (let kunci in dataMasuk) {
-                const dataLama = localStorage.getItem(kunci);
-                const gabung = dataLama 
-                    ? [...JSON.parse(dataLama), ...dataMasuk[kunci]]
-                    : dataMasuk[kunci];
-                localStorage.setItem(kunci, JSON.stringify(gabung));
-                jumlah += dataMasuk[kunci].length;
-            }
-            alert(`✅ Berhasil memasukkan ${jumlah} catatan arsip!`);
-            input.value = "";
-            tampilkanDaftar();
-            tutupPindahData();
-        } catch (err) {
-            alert("❌ Format file salah! Pilih file cadangan (.json) yang benar.");
-        }
-    };
-    pembaca.readAsText(input.files[0]);
-}
-
 // === LOGIN ===
-window.addEventListener('DOMContentLoaded', function() {
-    const ingatSaya = localStorage.getItem("ingatSaya");
-    if (ingatSaya === "ya") {
-        document.getElementById("ingatSaya").checked = true;
-        document.getElementById("userLogin").value = localStorage.getItem("simpanNamaPengguna") || "";
-        document.getElementById("passLogin").value = localStorage.getItem("simpanKataSandi") || "";
-    }
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && !document.getElementById('halLogin').classList.contains('sembunyi')) {
-            cekLogin();
-        }
-    });
-});
-
 function cekLogin() {
     const user = document.getElementById("userLogin").value.trim();
     const sandi = document.getElementById("passLogin").value;
-    const ingatSaya = document.getElementById("ingatSaya").checked;
     
     if (daftarPengguna[user] && daftarPengguna[user].sandi === sandi) {
         peranSaatIni = daftarPengguna[user].peran;
         
-        if (ingatSaya) {
-            localStorage.setItem("ingatSaya", "ya");
-            localStorage.setItem("simpanNamaPengguna", user);
-            localStorage.setItem("simpanKataSandi", sandi);
-        } else {
-            localStorage.removeItem("ingatSaya");
-            localStorage.removeItem("simpanNamaPengguna");
-            localStorage.removeItem("simpanKataSandi");
-        }
-        
         document.getElementById("labelPeran").textContent = 
-            peranSaatIni === "admin" ? "🔐 Administrator" : "📖 Pembaca (Lihat Saja)";
+            peranSaatIni === "admin" ? "🔐 Administrator" : "📖 Pembaca";
         
         if (peranSaatIni === "admin") {
             document.getElementById("blokPetunjukAdmin").classList.remove("sembunyi");
-            document.getElementById("tombolPindahData").style.display = "inline-block";
-            document.getElementById("bagianUnggah").classList.remove("tidak-bisa");
-            document.getElementById("judulUnggah").textContent = "➕ TAMBAHKAN FILE KE DAFTAR ARSIP";
-            document.getElementById("keteranganUnggah").style.display = "block";
-            document.getElementById("fileBaru").style.display = "inline-block";
-            document.getElementById("tombolSimpan").style.display = "inline-block";
-            document.getElementById("infoKapasitas").style.display = "block";
-        } else {
-            document.getElementById("blokPetunjukAdmin").classList.add("sembunyi");
-            document.getElementById("tombolPindahData").style.display = "none";
-            document.getElementById("bagianUnggah").classList.add("tidak-bisa");
-            document.getElementById("judulUnggah").textContent = "🔒 Hanya Administrator yang dapat menambah arsip";
-            document.getElementById("keteranganUnggah").style.display = "none";
-            document.getElementById("fileBaru").style.display = "none";
-            document.getElementById("tombolSimpan").style.display = "none";
-            document.getElementById("infoKapasitas").style.display = "none";
         }
         
         document.getElementById("halLogin").classList.add("sembunyi");
@@ -810,153 +345,89 @@ function togglePassword() {
     input.type = input.type === "password" ? "text" : "password";
 }
 
-document.getElementById("pilihTahun").addEventListener("change", function() {
-    if (this.value === "lainnya") {
-        const tahunBaru = prompt("Masukkan Tahun Baru (contoh: 2029):");
-        if (tahunBaru && !isNaN(tahunBaru) && tahunBaru.length === 4) {
-            const opt = document.createElement("option");
-            opt.value = tahunBaru;
-            opt.textContent = "📅 " + tahunBaru;
-            document.getElementById("pilihTahun").insertBefore(opt, this.lastElementChild);
-            this.value = tahunBaru;
-        } else {
-            this.value = "2026";
-        }
+// === BACA DAFTAR FILE OTOMATIS ===
+async function ambilDaftarBerkas() {
+    // Cara baca daftar file di GitHub Pages: baca file daftar.json
+    // Kalau belum ada, tampilkan petunjuk cara pakai
+    try {
+        const res = await fetch('berkas/daftar.json');
+        if (!res.ok) throw new Error('Belum ada daftar');
+        return await res.json();
+    } catch {
+        return null;
     }
-    tampilkanDaftar();
-});
+}
 
-function tampilkanDaftar() {
+// === TAMPILKAN DAFTAR SESUAI PILIHAN ===
+async function tampilkanDaftar() {
     const thn = document.getElementById("pilihTahun").value;
     const kd = document.getElementById("pilihBidang").value;
     document.getElementById("labelTahunBidang").textContent = thn + " • " + daftarBidang[kd] + " (" + kd + ")";
     
-    const daftar = ambilDaftarSK(thn, kd);
     const isi = document.getElementById("isiDaftar");
+    isi.innerHTML = `<tr><td colspan="4" class="sedang-muat">🔄 Sedang memuat...</td></tr>`;
+    
+    const daftar = await ambilDaftarBerkas();
+    
     isi.innerHTML = "";
+    let ditemukan = 0;
     
-    if (daftar.length === 0) {
-        isi.innerHTML = `<tr><td colspan="4" class="kosong">📭 Belum ada arsip SK tahun ${thn} — ${daftarBidang[kd]}</td></tr>`;
-        return;
+    if (daftar && daftar.berkas && daftar.berkas.length > 0) {
+        const cocok = daftar.berkas.filter(f => 
+            f.nama.startsWith(`${thn}-${kd}-`) && f.nama.endsWith('.pdf')
+        ).sort((a,b) => b.nama.localeCompare(a.nama));
+        
+        if (cocok.length > 0) {
+            cocok.forEach((berkas, idx) => {
+                const baris = document.createElement("tr");
+                baris.innerHTML = `
+                    <td>${idx+1}</td>
+                    <td>${thn}</td>
+                    <td><a href="berkas/${berkas.nama}" target="_blank">${berkas.nama}</a></td>
+                    <td><a href="berkas/${berkas.nama}" target="_blank" class="tombol tombol-biru tombol-kecil">📄 Buka</a></td>
+                `;
+                isi.appendChild(baris);
+            });
+            ditemukan = cocok.length;
+        }
     }
     
-    daftar.forEach((berkas, idx) => {
-        const baris = document.createElement("tr");
-        let kolomAksi = "";
-        const tautanBuka = `javascript:bukaFileSimpan('${thn}','${kd}',${idx})`;
-        
-        if (peranSaatIni === "admin") {
-            kolomAksi = `
-                <a href="${tautanBuka}" class="tombol tombol-biru" style="padding:4px 10px; font-size:12px; margin-right:5px;">📂 Buka</a>
-                <button class="tombol-hapus" onclick="hapusBerkas('${thn}','${kd}',${idx})">Hapus</button>
-            `;
-        } else {
-            kolomAksi = `<a href="${tautanBuka}" class="tombol tombol-biru" style="padding:4px 10px; font-size:12px;">📂 Buka</a>`;
-        }
-        
-        baris.innerHTML = `
-            <td>${idx+1}</td>
-            <td>${berkas.tanggal}</td>
-            <td>${berkas.nama}</td>
-            <td>${kolomAksi}</td>
+    if (ditemukan === 0) {
+        isi.innerHTML = `
+            <tr>
+                <td colspan="4" class="kosong">
+                    📭 Belum ada arsip untuk ${thn} • ${daftarBidang[kd]}<br><br>
+                    <strong>Caranya:</strong><br>
+                    1. Siapkan file PDF → beri nama: <code>${thn}-${kd}-001-Nama-Surat.pdf</code><br>
+                    2. Buka GitHub → folder <strong>berkas</strong> → Add file → Upload files<br>
+                    3. Segarkan halaman ini → muncul otomatis ✅<br><br>
+                    ${peranSaatIni === 'admin' ? 
+                        '<em>📌 Lalu perbarui juga file <strong>berkas/daftar.json</strong> agar daftar terbaca.</em>' : 
+                        '<em>Menunggu admin menambahkan file...</em>'
+                    }
+                </td>
+            </tr>
         `;
-        isi.appendChild(baris);
-    });
-}
-
-function bukaFileSimpan(thn, kd, idx) {
-    const daftar = ambilDaftarSK(thn, kd);
-    const berkas = daftar[idx];
-    if (!berkas || !berkas.data) {
-        alert("❌ File tidak tersedia. Pindahkan data dulu dari perangkat asal!");
-        return;
-    }
-    const blob = dataURLkeBlob(berkas.data);
-    const url = URL.createObjectURL(blob);
-    window.open(url, '_blank');
-    setTimeout(() => URL.revokeObjectURL(url), 60000);
-}
-
-function dataURLkeBlob(dataUrl) {
-    const bagian = dataUrl.split(',');
-    const tipe = bagian[0].match(/:(.*?);/)[1];
-    const biner = atob(bagian[1]);
-    const arrBiner = new Uint8Array(biner.length);
-    for (let i = 0; i < biner.length; i++) {
-        arrBiner[i] = biner.charCodeAt(i);
-    }
-    return new Blob([arrBiner], { type: tipe });
-}
-
-function simpanBerkas() {
-    if (peranSaatIni !== "admin") {
-        alert("🔒 Maaf, hanya Administrator yang dapat menambah arsip!");
-        return;
-    }
-    const thn = document.getElementById("pilihTahun").value;
-    const kd = document.getElementById("pilihBidang").value;
-    const daftar = ambilDaftarSK(thn, kd);
-    const file = document.getElementById("fileBaru").files[0];
-    
-    if (!file) { 
-        alert("⚠️ Silakan pilih file terlebih dahulu!"); 
-        return; 
-    }
-    
-    const pembaca = new FileReader();
-    pembaca.onload = function(e) {
-        const hariIni = new Date().toLocaleDateString('id-ID', {day:'2-digit', month:'2-digit', year:'numeric'});
-        daftar.unshift({
-            nama: file.name,
-            tanggal: hariIni,
-            data: e.target.result,
-            ukuran: (file.size / 1024).toFixed(1) + " KB"
-        });
-        
-        const hasil = simpanDaftarSK(thn, kd, daftar);
-        if (!hasil.berhasil) {
-            alert("❌ " + hasil.pesan + "\nSaran: Kurangi ukuran file atau hapus arsip lama.");
-            return;
-        }
-        
-        document.getElementById("statusUnggah").textContent = "✅ Berhasil ditambahkan: " + file.name;
-        document.getElementById("fileBaru").value = "";
-        tampilkanDaftar();
-        setTimeout(() => {
-            document.getElementById("statusUnggah").textContent = "";
-        }, 4000);
-    };
-    pembaca.readAsDataURL(file);
-}
-
-function hapusBerkas(thn, kd, idx) {
-    if (peranSaatIni !== "admin") return;
-    if (confirm("⚠️ Hapus arsip ini dari daftar?\n(File asli di komputer TIDAK akan terhapus)")) {
-        const daftar = ambilDaftarSK(thn, kd);
-        daftar.splice(idx, 1);
-        simpanDaftarSK(thn, kd, daftar);
-        tampilkanDaftar();
     }
 }
 
 function keluarAplikasi() {
-    if (confirm("🚪 Yakin ingin keluar dari aplikasi arsip?")) {
-        if (!document.getElementById("ingatSaya").checked) {
-            localStorage.removeItem("ingatSaya");
-            localStorage.removeItem("simpanNamaPengguna");
-            localStorage.removeItem("simpanKataSandi");
-        }
-        alert("👋 Terima kasih telah menggunakan Arsip SK!\nSampai jumpa lagi sayang! ❤️");
+    if (confirm("🚪 Yakin ingin keluar?")) {
+        alert("👋 Terima kasih, sampai jumpa lagi sayang! ❤️");
         document.getElementById("halUtama").style.display = "none";
         document.getElementById("halLogin").classList.remove("sembunyi");
-        if (!document.getElementById("ingatSaya").checked) {
-            document.getElementById("userLogin").value = "";
-            document.getElementById("passLogin").value = "";
-        }
+        document.getElementById("userLogin").value = "";
+        document.getElementById("passLogin").value = "";
         document.getElementById("pesanSalah").style.display = "none";
         peranSaatIni = "";
     }
 }
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !document.getElementById('halLogin').classList.contains('sembunyi')) {
+        cekLogin();
+    }
+});
 </script>
 </body>
 </html>
