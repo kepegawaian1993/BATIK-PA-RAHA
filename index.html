@@ -12,7 +12,6 @@
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: 
-                url('gambar.png') no-repeat center center fixed,
                 linear-gradient(135deg, #2563EB 0%, #3B82F6 50%, #60A5FA 100%);
             background-size: cover;
         }
@@ -141,14 +140,6 @@
             background: #EFF6FF; border-left: 4px solid #3B82F6;
             padding: 14px 16px; border-radius: 10px; margin: 16px 0; font-size: 14px;
         }
-        .info-format code {
-            background: #DBEAFE; padding: 2px 8px; border-radius: 4px;
-            font-family: Consolas, monospace;
-        }
-        .petunjuk-penting {
-            background: #FEF3C7; border-left: 4px solid #F59E0B;
-            padding: 14px; border-radius: 10px; margin: 15px 0; font-size: 14px;
-        }
         .daftar-berkas {
             background: rgba(255,255,255,0.95); padding: 28px; border-radius: 16px;
             border: 2px solid #D4AF37;
@@ -178,12 +169,12 @@
         .sedang-muat { color: #3B82F6; font-style: italic; padding: 15px; }
         .form-bagian-admin { background: #FFFBEB; padding: 20px; border-radius: 15px; border: 2px solid #F59E0B; margin-bottom: 20px; }
         .pesan-berhasil { color: #16A34A; margin-top: 12px; display: none; padding: 10px; background: #ECFDF5; border-radius: 8px; }
+        .pesan-error { color: #b91c1c; margin-top: 12px; display: none; padding: 10px; background: #FEF2F2; border-radius: 8px; }
         @media (max-width: 480px) {
             body { padding: 10px; }
             .kotak-login { width: 96%; }
             .form-bagian { padding: 0 20px 10px; }
             .kotak-login h2 { font-size: 26px; }
-            .gedung-bawah { height: 130px; }
             .header h1 { font-size: 17px; }
             .baris-pilih { flex-direction: column; align-items: stretch; }
             th, td { padding: 10px 6px; font-size: 14px; }
@@ -194,9 +185,8 @@
 <!-- HALAMAN LOGIN -->
 <div class="kotak-login" id="halLogin">
     <div class="logo-atas">
-        <img src="simbol.png" alt="Logo Pengadilan Agama Raha" class="logo-instansi">
+        <div class="ikon-folder">📂</div>
     </div>
-    <div class="ikon-folder">📂</div>
     <h2>BATIK RAHA</h2>
     <p class="sub-judul">(Basis Arsip Teks Informasi Keputusan Pengadilan Agama Raha)</p>
     <p class="slogan">"Tertib Arsip, Kinerja Lebih Baik"</p>
@@ -221,9 +211,6 @@
         <div class="pesan-salah" id="pesanSalah">
             ❌ Nama pengguna atau kata sandi salah!
         </div>
-    </div>
-    <div class="gedung-bawah">
-        <img src="gedung.png" alt="Gedung Pengadilan Agama Raha">
     </div>
 </div>
 
@@ -281,17 +268,18 @@
             <div class="baris-pilih">
                 <div style="flex:1;">
                     <label>🔗 Alamat File PDF:</label>
-                    <input type="text" id="inLink" placeholder="berkas/2026-HK-001-Nama-File.pdf">
+                    <input type="text" id="inLink" placeholder="berkas/nama-file-anda.pdf">
                 </div>
             </div>
             <div class="info-format">
                 💡 <strong>Cara Gampang:</strong><br>
                 1. Upload PDF ke folder <strong>berkas</strong> di GitHub<br>
-                2. Tulis alamatnya di kotak di atas<br>
+                2. Tulis alamatnya di kotak di atas (contoh: <code>berkas/nama-file.pdf</code>)<br>
                 3. Klik <strong>Simpan</strong> → Langsung muncul untuk semua perangkat! ✅
             </div>
             <button class="tombol tombol-hijau" onclick="simpanArsip()">✅ SIMPAN KE DAFTAR</button>
             <div class="pesan-berhasil" id="pesanBerhasil">✅ Tersimpan! Semua orang bisa lihat sekarang</div>
+            <div class="pesan-error" id="pesanError">❌ Gagal menyimpan. Coba lagi nanti.</div>
         </div>
         <div class="catatan-hijau-admin">
             ✅ <strong>Semua perangkat melihat daftar yang sama!</strong><br>
@@ -314,7 +302,7 @@
             <select id="pilihBidang" onchange="tampilkanDaftar()">
                 <option value="semua">Semua Bidang</option>
                 <option value="KP">KP — Kepegawaian</option>
-                <option value="OT">OT — Organisasi & Tatalaksana</option>
+                <option value="OT">OT — Organisasi</option>
                 <option value="KU">KU — Keuangan</option>
                 <option value="RT">RT — Rumah Tangga</option>
                 <option value="HK" selected>HK — Hukum</option>
@@ -348,28 +336,91 @@
 </div>
 
 <script>
-// === AKUN ===
+// ==================================================
+// 🔧 PENGATURAN — ISI SESUAI DATA KAMU
+// ==================================================
+const GITHUB = {
+    pemilik: "kepegawaian1993",
+    repo:    "BATIK-PA-RAHA",
+    berkas:  "data-arsip.json",
+    cabang:  "main"
+};
+
+// 🔑 TOKEN GITHUB KAMU
+const TOKEN_GITHUB = "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";
+// ==================================================
+
+// === AKUN PENGGUNA ===
 const daftarPengguna = {
     "admin_SK": { sandi: "admin1993", peran: "admin" },
     "paraha":   { sandi: "paraha2026", peran: "pembaca" }
 };
-let peranSaatIni = "";
 
 const daftarBidang = {
-    "KP": "Kepegawaian", "OT": "Organisasi & Tatalaksana", "KU": "Keuangan",
+    "KP": "Kepegawaian", "OT": "Organisasi", "KU": "Keuangan",
     "RT": "Rumah Tangga", "HK": "Hukum", "TI": "Teknologi Informasi",
     "RA": "Rancangan", "PW": "Pengawasan", "PS": "Pusat",
     "PL": "Perlengkapan", "HM": "Humas", "semua": "Semua Bidang"
 };
 
-// === PENYIMPANAN — DIBACA SEMUA PERANGKAT ===
-function ambilDaftar() {
-    const data = localStorage.getItem('arsip_sk_batik');
-    return data ? JSON.parse(data) : [];
+let peranSaatIni = "";
+
+// === FUNGSI AMBIL DATA DARI GITHUB ===
+async function ambilDaftarDariGitHub() {
+    const url = `https://api.github.com/repos/${GITHUB.pemilik}/${GITHUB.repo}/contents/${GITHUB.berkas}`;
+    
+    try {
+        const res = await fetch(url, {
+            headers: { "Authorization": `Bearer ${TOKEN_GITHUB}` }
+        });
+        
+        if (res.status === 404) return [];
+        
+        const data = await res.json();
+        const isi = atob(data.content);
+        return JSON.parse(isi);
+    } catch (e) {
+        console.error("Gagal ambil data:", e);
+        return [];
+    }
 }
 
-function simpanDaftar(daftar) {
-    localStorage.setItem('arsip_sk_batik', JSON.stringify(daftar));
+// === FUNGSI SIMPAN DATA KE GITHUB ===
+async function simpanKeGitHub(daftar) {
+    const url = `https://api.github.com/repos/${GITHUB.pemilik}/${GITHUB.repo}/contents/${GITHUB.berkas}`;
+    const isiBase64 = btoa(JSON.stringify(daftar, null, 2));
+    
+    try {
+        // Cek apakah file sudah ada
+        const cek = await fetch(url, {
+            headers: { "Authorization": `Bearer ${TOKEN_GITHUB}` }
+        });
+        
+        const body = {
+            message: "Tambah arsip baru",
+            content: isiBase64,
+            branch: GITHUB.cabang
+        };
+        
+        if (cek.status === 200) {
+            const dataCek = await cek.json();
+            body.sha = dataCek.sha;
+        }
+        
+        const res = await fetch(url, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${TOKEN_GITHUB}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+        
+        return res.ok;
+    } catch (e) {
+        console.error("Gagal simpan:", e);
+        return false;
+    }
 }
 
 // === LOGIN ===
@@ -399,8 +450,8 @@ function togglePassword() {
     input.type = input.type === "password" ? "text" : "password";
 }
 
-// === ADMIN TAMBAH DATA ===
-function simpanArsip() {
+// === SIMPAN ARSIP BARU ===
+async function simpanArsip() {
     const thn = document.getElementById('inTahun').value;
     const bd = document.getElementById('inBidang').value;
     const nr = document.getElementById('inNomor').value.trim();
@@ -414,7 +465,10 @@ function simpanArsip() {
     
     const namaLengkap = `${thn}-${bd}-${nr}-${nm}`;
     
-    const daftar = ambilDaftar();
+    // Ambil daftar lama
+    const daftar = await ambilDaftarDariGitHub();
+    
+    // Tambah yang baru
     daftar.push({
         id: Date.now(),
         tahun: thn,
@@ -423,31 +477,38 @@ function simpanArsip() {
         link: lk
     });
     
-    simpanDaftar(daftar);
+    // Simpan ke GitHub
+    const berhasil = await simpanKeGitHub(daftar);
     
-    // Kosongkan form
-    document.getElementById('inNomor').value = '';
-    document.getElementById('inNama').value = '';
-    document.getElementById('inLink').value = '';
-    
-    document.getElementById('pesanBerhasil').style.display = 'block';
-    setTimeout(() => document.getElementById('pesanBerhasil').style.display = 'none', 3000);
-    
-    tampilkanDaftar();
+    if (berhasil) {
+        // Kosongkan form
+        document.getElementById('inNomor').value = '';
+        document.getElementById('inNama').value = '';
+        document.getElementById('inLink').value = '';
+        
+        document.getElementById('pesanBerhasil').style.display = 'block';
+        document.getElementById('pesanError').style.display = 'none';
+        setTimeout(() => document.getElementById('pesanBerhasil').style.display = 'none', 3000);
+        
+        tampilkanDaftar();
+    } else {
+        document.getElementById('pesanError').style.display = 'block';
+        document.getElementById('pesanBerhasil').style.display = 'none';
+    }
 }
 
 // === HAPUS ARSIP ===
-function hapusArsip(id) {
+async function hapusArsip(id) {
     if (confirm('🗑️ Yakin mau hapus arsip ini?')) {
-        let daftar = ambilDaftar();
+        let daftar = await ambilDaftarDariGitHub();
         daftar = daftar.filter(item => item.id !== id);
-        simpanDaftar(daftar);
+        await simpanKeGitHub(daftar);
         tampilkanDaftar();
     }
 }
 
 // === TAMPILKAN DAFTAR ===
-function tampilkanDaftar() {
+async function tampilkanDaftar() {
     const thn = document.getElementById("pilihTahun").value;
     const kd = document.getElementById("pilihBidang").value;
     document.getElementById("labelTahunBidang").textContent = thn + " • " + daftarBidang[kd];
@@ -455,7 +516,7 @@ function tampilkanDaftar() {
     const isi = document.getElementById("isiDaftar");
     isi.innerHTML = `<tr><td colspan="4" class="sedang-muat">🔄 Sedang memuat...</td></tr>`;
     
-    const daftar = ambilDaftar();
+    const daftar = await ambilDaftarDariGitHub();
     
     isi.innerHTML = "";
     let ditemukan = 0;
